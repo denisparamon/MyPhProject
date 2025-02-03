@@ -27,7 +27,7 @@ symfony console doctrine:migrations:migrate
 5. Запуск сервера
    Для запуска веб-сервера используйте команду:
 ```bash
-symfony server:start
+symfony server:starts
 ```  
 6. Конфигурация
    Если необходимо изменить параметры подключения к базе данных, откройте файл .env или .env.local и обновите строку:
