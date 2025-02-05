@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\TicketRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: TicketRepository::class)]
 class Ticket
@@ -19,19 +20,24 @@ class Ticket
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'bigint')]
+    #[Groups(['ticket:read'])]
     private ?int $id = null;
 
     #[ORM\Column(type: 'text')]
+    #[Groups(['ticket:read', 'ticket:write'])]
     private string $description;
 
     #[ORM\Column(type: 'string', length: 20)]
+    #[Groups(['ticket:read', 'ticket:write'])]
     private string $status;
 
     #[ORM\Column(type: 'datetime')]
+    #[Groups(['ticket:read'])]
     private \DateTimeInterface $createdAt;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['ticket:read'])]
     private User $user;
 
     public function getId(): ?int
